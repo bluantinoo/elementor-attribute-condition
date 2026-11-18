@@ -1,6 +1,6 @@
 # Elementor Attribute Condition
 
-A small WordPress plugin that makes WooCommerce product attribute archives (Color, Material, Author, Designer...) first-class citizens in the Elementor Pro Theme Builder.
+A small WordPress plugin that makes WooCommerce product attribute archives (Material, Designer, Author, Color...) first-class citizens in the Elementor Pro Theme Builder.
 
 Out of the box, Elementor Pro lets you target a Product Archive template at product categories and tags, but not at attribute archives such as `/color/red/`. They are also missing from the "Preview Dynamic Content as" list in the editor, so you cannot design an attribute archive template against real data.
 
@@ -65,6 +65,7 @@ add_filter( 'elementor_attribute_condition_expose_attribute', function ( $expose
 ## Limits
 
 - Elementor Pro reads the flag when it builds its lists, so the behaviour depends on Elementor Pro keeping that logic. The term field in the preview wraps an internal function of the Elementor Pro editor (`updatePreviewIdOptions`): if a release renames it, the field disappears again and archive templates preview the first term, nothing breaks. Test after major Elementor Pro releases.
+- **Loop Items and Loop Grids** do not need this plugin: Elementor Pro already offers attribute taxonomies as the source of taxonomy Loop Items and Loop Grids, with the term picker in the preview (checked with Elementor Pro 4.4, with and without this plugin). It excludes `pa_color` and `pa_size` by name, and this plugin cannot change that.
 - If an attribute used in a "Product Attribute Archive" condition is renamed or deleted, the condition keeps pointing to the old taxonomy and matches nothing, while the conditions screen shows "All attributes". Set the condition again after renaming an attribute.
 - Elementor Pro only uses the flag where it uses it: this plugin does not add attributes to places where Elementor Pro lists taxonomies in another way.
 

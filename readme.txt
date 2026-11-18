@@ -47,6 +47,10 @@ Yes. Display conditions and archive templates are Elementor Pro features.
 
 The field is added by wrapping an internal function of the Elementor Pro editor. If an Elementor Pro release changes it, the field disappears and archive templates preview the first term of the taxonomy, as Elementor Pro does on its own. Nothing else breaks.
 
+= Do I need it for Loop Items? =
+
+No. Elementor Pro already offers attribute taxonomies as the source of taxonomy Loop Items and Loop Grids, without this plugin. It excludes pa_color and pa_size by name, and this plugin cannot change that.
+
 = My attribute does not appear =
 
 Edit the attribute in Products > Attributes and tick "Enable archives". Without archives there is no archive page to template.
