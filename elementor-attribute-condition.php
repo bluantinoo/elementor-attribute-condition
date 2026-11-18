@@ -3,7 +3,7 @@
  * Plugin Name:       Elementor Attribute Condition
  * Plugin URI:        https://github.com/bluantinoo/elementor-attribute-condition
  * Description:       Makes WooCommerce product attribute archives available to the Elementor Pro Theme Builder: display conditions per attribute or per term, and editor preview.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            Diego Vagnoli
  * Author URI:        https://diegovagnoli.it
  * License:           GPL-2.0-or-later
@@ -14,6 +14,7 @@
  * Tested up to:      7.1
  * Requires PHP:      7.4
  * Requires Plugins:  elementor, elementor-pro, woocommerce
+ * Update URI:        https://github.com/bluantinoo/elementor-attribute-condition
  * WC requires at least: 8.0
  * WC tested up to:   11.2
  * Elementor tested up to: 4.4
@@ -28,7 +29,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
+
+require_once __DIR__ . '/lib/plugin-update-checker/plugin-update-checker.php';
+
+/**
+ * Updates come from the GitHub releases of the plugin, not from wordpress.org
+ * (the Update URI header keeps WordPress from looking there). Only the zip
+ * attached to a release is installed, never the source archive of the tag.
+ */
+function register_update_checker() {
+	$checker = \YahnisElsts\PluginUpdateChecker\v6\PucFactory::buildUpdateChecker(
+		'https://github.com/bluantinoo/elementor-attribute-condition/',
+		__FILE__,
+		'elementor-attribute-condition'
+	);
+	$checker->getVcsApi()->enableReleaseAssets(
+		'/^elementor-attribute-condition\.zip$/',
+		\YahnisElsts\PluginUpdateChecker\v6p0\Vcs\Api::REQUIRE_RELEASE_ASSETS
+	);
+
+	// Releases only: without this the library falls back to the latest tag and
+	// then to the main branch, whose code was never built or released.
+	add_filter(
+		'puc_vcs_update_detection_strategies-elementor-attribute-condition',
+		static function ( $strategies ) {
+			return array_intersect_key( $strategies, [ 'latest_release' => true ] );
+		}
+	);
+}
+register_update_checker();
 
 /*
  * WooCommerce registers public attribute taxonomies with show_in_nav_menus off,

@@ -5,7 +5,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: elementor, elementor-pro, woocommerce
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,10 @@ Attributes with archives become available as boxes in Appearance > Menus (hidden
 
 == Frequently Asked Questions ==
 
+= Where do updates come from? =
+
+From the GitHub releases of the plugin (https://github.com/bluantinoo/elementor-attribute-condition/releases), not from wordpress.org. They appear in Dashboard > Updates like any other plugin.
+
 = Do I need Elementor Pro? =
 
 Yes. Display conditions and archive templates are Elementor Pro features.
@@ -57,10 +61,18 @@ Edit the attribute in Products > Attributes and tick "Enable archives". Without 
 
 == Upgrade Notice ==
 
+= 2.0.1 =
+Updates now come from the GitHub releases of the plugin. Install this version by hand once; the next ones arrive in Dashboard > Updates.
+
 = 2.0.0 =
 Rebuilt on Elementor Pro's native handling. Saved display conditions and preview settings carry over; the helper functions get_current_loop_term() and get_loop_term_meta() are removed.
 
 == Changelog ==
+
+= 2.0.1 =
+* Updates from the GitHub releases of the plugin, through the bundled Plugin Update Checker 6.0 (MIT).
+* Update URI header, so WordPress never looks for this slug on wordpress.org.
+* Uninstall also removes the update checker state.
 
 = 2.0.0 =
 * Rewritten on top of Elementor Pro's native taxonomy handling: attribute archives get per-term display conditions and the native preview.

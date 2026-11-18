@@ -77,6 +77,14 @@ Version 2.0 replaces the 1.x internals (a custom Product Archive document class,
 - **Preview settings saved with 1.x are converted once**, the first time an administrator loads an admin page after the update, with WooCommerce active: 1.x stored the term inside the preview type (`taxonomy/pa_color::red`), Elementor Pro wants the attribute archive plus the term ID. The plugin stores its version in the option `elementor_attribute_condition_version`, removed when the plugin is deleted. A setting whose attribute or term no longer exists is left as it is, and the template previews the first term.
 - The helper functions `get_current_loop_term()` and `get_loop_term_meta()` are gone. Read term fields from the queried object instead, e.g. `get_term_meta( get_queried_object_id(), 'key', true )`.
 
+## Updates
+
+The plugin is not on wordpress.org: it updates itself from the [GitHub releases](https://github.com/bluantinoo/elementor-attribute-condition/releases) of this repository, through the bundled [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) library (MIT). New versions show up in **Dashboard → Updates** and in `wp plugin update`, like any other plugin. The `Update URI` header tells WordPress not to look for this slug on wordpress.org, so a different plugin published there under the same name can never be offered as an update.
+
+Only the zip attached to a release is installed. The site asks the GitHub API for the latest release about every 12 hours. GitHub sees what WordPress sends with every outgoing request: the server's IP address, and the WordPress version and site URL in the User-Agent.
+
+Whoever can publish a release on this repository can ship code to every site that runs the plugin, which is true of any update channel. Releases are built by the workflow in `.github/workflows/release.yml` from a version tag on `main`.
+
 ## License
 
 GPL-2.0-or-later. See [LICENSE](LICENSE).
